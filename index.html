@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiBichos - Pet Shop, Clínica e Acessórios</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <a href="#inicio" class="logo">
+            <img src="multibichos.jpg" alt="Logotipo MultiBichos" class="logo-img">
+            <span>MultiBichos</span>
+        </a>
+        <nav id="navMenu">
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#loja">Loja</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <div class="cart-icon" id="cartBtn" title="Ver Carrinho">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cartCount">0</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Início / Hero -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <img src="multibichos.jpg" alt="MultiBichos" class="hero-logo">
+            <h1>Cuidado completo para todos os seus bichos!</h1>
+            <p>Cães, gatos, aves e pequenos roedores: tudo o que eles precisam em rações, acessórios, banho & tosa e atendimento veterinário.</p>
+            <div class="hero-buttons">
+                <a href="#loja" class="btn primary">Explorar Loja</a>
+                <a href="#servicos" class="btn secondary">Agendar Serviços</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Serviços -->
+    <section id="servicos" class="services">
+        <div class="section-title">
+            <h2>Nossos Serviços</h2>
+            <p>Atendimento especializado para cães, gatos, aves e animais exóticos</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-bath"></i></div>
+                <h3>Banho e Tosa</h3>
+                <p>Produtos neutros e hipoalergênicos, hidratação, corte de unhas e tosa higiênica ou na tesoura.</p>
+                <a href="#contato" class="service-btn" onclick="selecionarAssunto('banho')">Agendar Horário <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-stethoscope"></i></div>
+                <h3>Clínica Veterinária</h3>
+                <p>Consultas clínicas para cães, gatos e silvestres, vacinas importadas, exames e microchipagem.</p>
+                <a href="#contato" class="service-btn" onclick="selecionarAssunto('vet')">Marcar Consulta <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-dove"></i></div>
+                <h3>Cuidados para Aves e Exóticos</h3>
+                <p>Aparação segura de penas de voo, corte de unhas e orientação nutricional especializada.</p>
+                <a href="#contato" class="service-btn" onclick="selecionarAssunto('aves')">Solicitar Atendimento <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-truck-fast"></i></div>
+                <h3>Tele-Entrega MultiBichos</h3>
+                <p>Receba rações, medicamentos e acessórios no conforto da sua casa no mesmo dia.</p>
+                <a href="#loja" class="service-btn">Fazer Pedido <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Loja (E-commerce) -->
+    <section id="loja" class="shop">
+        <div class="section-title">
+            <h2>Loja MultiBichos</h2>
+            <p>Produtos selecionados para cada espécie</p>
+        </div>
+        
+        <!-- Filtros da Loja -->
+        <div class="shop-filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="caes">Cães</button>
+            <button class="filter-btn" data-filter="gatos">Gatos</button>
+            <button class="filter-btn" data-filter="aves">Aves & Roedores</button>
+        </div>
+
+        <!-- Grade de Produtos -->
+        <div class="products-grid" id="productsGrid">
+            <!-- Os produtos são carregados pelo script.js -->
+        </div>
+    </section>
+
+    <!-- Modal do Carrinho -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3><i class="fa-solid fa-paw"></i> Seu Carrinho</h3>
+                <i class="fa-solid fa-xmark" id="closeCart"></i>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Seu carrinho está vazio.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <strong id="cartTotal">R$ 0,00</strong>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">
+                    <i class="fa-brands fa-whatsapp"></i> Finalizar no WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção Sobre -->
+    <section id="sobre" class="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>Sobre a MultiBichos</h2>
+                <p>A <strong>MultiBichos</strong> nasceu para atender toda a família multiespécie. Sabemos que o amor pelos animais vai muito além de cães e gatos — por isso, oferecemos estrutura, produtos e profissionais preparados também para aves, roedores e pets exóticos.</p>
+                <div class="stats">
+                    <div class="stat">
+                        <h3>+8.000</h3>
+                        <p>Pets Atendidos</p>
+                    </div>
+                    <div class="stat">
+                        <h3>+1.200</h3>
+                        <p>Itens na Loja</p>
+                    </div>
+                    <div class="stat">
+                        <h3>100%</h3>
+                        <p>Dedicação</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="multibichos.jpg" alt="Identidade MultiBichos">
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Contato / Agendamento -->
+    <section id="contato" class="contact">
+        <div class="section-title">
+            <h2>Contato & Agendamentos</h2>
+            <p>Agende um serviço ou tire dúvidas com nossa equipe</p>
+        </div>
+        <div class="contact-container">
+            <form id="contactForm" onsubmit="enviarMensagem(event)">
+                <input type="text" id="nome" placeholder="Seu Nome" required>
+                <input type="text" id="petNome" placeholder="Nome e Espécie do Pet (Ex: Thor - Cão)" required>
+                <input type="tel" id="telefone" placeholder="Telefone / WhatsApp" required>
+                <select id="assuntoSelect" required>
+                    <option value="" disabled selected>Selecione o serviço ou assunto</option>
+                    <option value="banho">Banho e Tosa</option>
+                    <option value="vet">Consulta Veterinária</option>
+                    <option value="aves">Cuidados para Aves e Exóticos</option>
+                    <option value="duvida">Dúvidas sobre Produtos</option>
+                </select>
+                <textarea id="mensagem" placeholder="Observações, data ou horário de preferência..." rows="4" required></textarea>
+                <button type="submit" class="btn primary">Enviar Solicitação</button>
+            </form>
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <h4>Endereço</h4>
+                        <p>Av. Principal, 450 - Centro</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <div>
+                        <h4>WhatsApp & Telefone</h4>
+                        <p>(11) 99999-8888</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <h4>E-mail</h4>
+                        <p>contato@multibichos.com.br</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <h4>Horário de Funcionamento</h4>
+                        <p>Segunda a Sábado: 08:00 às 19:30</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-brand">
+            <img src="multibichos.jpg" alt="Logo MultiBichos">
+            <span>MultiBichos Pet Shop & Clínica</span>
+        </div>
+        <p>&copy; 2026 MultiBichos. Todos os direitos reservados.</p>
+        <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
